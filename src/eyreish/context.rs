@@ -134,6 +134,10 @@ where
         self.error.severity()
     }
 
+    fn line_offset(&self) -> Option<u32> {
+        self.error.line_offset()
+    }
+
     fn help<'a>(&'a self) -> Option<Box<dyn Display + 'a>> {
         self.error.help()
     }
@@ -165,6 +169,10 @@ where
 
     fn severity(&self) -> Option<crate::Severity> {
         unsafe { ErrorImpl::diagnostic(self.error.inner.by_ref()).severity() }
+    }
+
+    fn line_offset(&self) -> Option<u32> {
+        unsafe { ErrorImpl::diagnostic(self.error.inner.by_ref()).line_offset() }
     }
 
     fn help<'a>(&'a self) -> Option<Box<dyn Display + 'a>> {

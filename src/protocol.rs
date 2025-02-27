@@ -67,6 +67,10 @@ pub trait Diagnostic: std::error::Error {
     fn diagnostic_source(&self) -> Option<&dyn Diagnostic> {
         None
     }
+
+    fn line_offset(&self) -> Option<u32> {
+        None
+    }
 }
 
 macro_rules! box_error_impls {
