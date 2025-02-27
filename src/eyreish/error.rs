@@ -391,8 +391,8 @@ impl Report {
     }
 
     /// Provide source code for this error
-    pub fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report {
-        WithSourceCode { source_code, error: self, line_offset: 0 }.into()
+    pub fn with_source_code(self, source_code: impl SourceCode + 'static, line_offset: usize) -> Report {
+        WithSourceCode { source_code, error: self, line_offset: line_offset }.into()
     }
 }
 
