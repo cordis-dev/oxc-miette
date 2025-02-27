@@ -134,7 +134,7 @@ where
         self.error.severity()
     }
 
-    fn line_offset(&self) -> Option<usize> {
+    fn line_offset(&self) -> usize {
         self.error.line_offset()
     }
 
@@ -171,7 +171,7 @@ where
         unsafe { ErrorImpl::diagnostic(self.error.inner.by_ref()).severity() }
     }
 
-    fn line_offset(&self) -> Option<usize> {
+    fn line_offset(&self) -> usize {
         unsafe { ErrorImpl::diagnostic(self.error.inner.by_ref()).line_offset() }
     }
 
