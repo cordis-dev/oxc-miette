@@ -68,7 +68,7 @@ pub trait Diagnostic: std::error::Error {
         None
     }
 
-    fn line_offset(&self) -> Option<u32> {
+    fn line_offset(&self) -> Option<usize> {
         None
     }
 }
