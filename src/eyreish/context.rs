@@ -134,7 +134,7 @@ where
         self.error.severity()
     }
 
-    fn line_offset(&self) -> usize {
+    fn line_offset(&self) -> u32 {
         self.error.line_offset()
     }
 
@@ -171,7 +171,7 @@ where
         unsafe { ErrorImpl::diagnostic(self.error.inner.by_ref()).severity() }
     }
 
-    fn line_offset(&self) -> usize {
+    fn line_offset(&self) -> u32 {
         unsafe { ErrorImpl::diagnostic(self.error.inner.by_ref()).line_offset() }
     }
 

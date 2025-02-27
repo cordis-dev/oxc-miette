@@ -96,7 +96,7 @@ impl StdError for BoxedError {
 pub(crate) struct WithSourceCode<E, C> {
     pub(crate) error: E,
     pub(crate) source_code: C,
-    pub(crate) line_offset: usize,
+    pub(crate) line_offset: u32,
 }
 
 impl<E: Diagnostic, C: SourceCode> Diagnostic for WithSourceCode<E, C> {
@@ -124,7 +124,7 @@ impl<E: Diagnostic, C: SourceCode> Diagnostic for WithSourceCode<E, C> {
         self.error.source_code().or(Some(&self.source_code))
     }
 
-    fn line_offset(&self) -> usize {
+    fn line_offset(&self) -> u32 {
         self.line_offset
     }
 
@@ -162,7 +162,7 @@ impl<C: SourceCode> Diagnostic for WithSourceCode<Report, C> {
         self.error.source_code().or(Some(&self.source_code))
     }
 
-    fn line_offset(&self) -> usize {
+    fn line_offset(&self) -> u32 {
         self.line_offset
     }    
 
