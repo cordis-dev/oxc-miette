@@ -392,7 +392,7 @@ impl Report {
 
     /// Provide source code for this error
     pub fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report {
-        WithSourceCode { source_code, error: self }.into()
+        WithSourceCode { source_code, error: self, line_offset: 0 }.into()
     }
 }
 

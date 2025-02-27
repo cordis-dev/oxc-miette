@@ -96,6 +96,7 @@ impl StdError for BoxedError {
 pub(crate) struct WithSourceCode<E, C> {
     pub(crate) error: E,
     pub(crate) source_code: C,
+    pub(crate) line_offset: usize,
 }
 
 impl<E: Diagnostic, C: SourceCode> Diagnostic for WithSourceCode<E, C> {
@@ -121,6 +122,10 @@ impl<E: Diagnostic, C: SourceCode> Diagnostic for WithSourceCode<E, C> {
 
     fn source_code(&self) -> Option<&dyn miette::SourceCode> {
         self.error.source_code().or(Some(&self.source_code))
+    }
+
+    fn line_offset(&self) -> usize {
+        self.line_offset
     }
 
     fn related<'a>(&'a self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic> + 'a>> {
@@ -156,6 +161,10 @@ impl<C: SourceCode> Diagnostic for WithSourceCode<Report, C> {
     fn source_code(&self) -> Option<&dyn miette::SourceCode> {
         self.error.source_code().or(Some(&self.source_code))
     }
+
+    fn line_offset(&self) -> usize {
+        self.line_offset
+    }    
 
     fn related<'a>(&'a self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic> + 'a>> {
         self.error.related()
